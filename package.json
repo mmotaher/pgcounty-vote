@@ -1,32 +1,24 @@
 {
   "name": "pgcounty-vote",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
-    "sass": "^1.23.1"
-  },
+  "version": "1.0.0",
+  "description": "A simple web application for finding your polling place",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INST377-Team-12/pgcounty-vote.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "author": "INST377 Team 12",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/INST377-Team-12/pgcounty-vote/issues"
+  },
+  "homepage": "https://github.com/INST377-Team-12/pgcounty-vote#readme",
+  "devDependencies": {
+    "node-sass": "^4.13.0"
+  },
+  "dependencies": {}
 }
