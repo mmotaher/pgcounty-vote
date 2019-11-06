@@ -4,7 +4,7 @@
   "description": "A simple web application for finding your polling place",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+    "compile:sass": "node-sass app/sass/main.scss app/css/style.css -w"
   },
   "repository": {
     "type": "git",
