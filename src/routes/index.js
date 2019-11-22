@@ -19,4 +19,11 @@ router.get('/search', function (req, res) {
   });
 });
 
+// Put at the end so that any other page direct goes to 404
+router.get('*', function (req, res) {
+  res.render('../views/404', {
+    title: '404 Error'
+  });
+});
+
 module.exports = router;

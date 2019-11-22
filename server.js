@@ -6,26 +6,26 @@ const routes = require('./src/routes');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const url = 'https://data.princegeorgescountymd.gov/resource/2v6d-7p4w.json';
 
+// Set up engine
 app.engine('html', engine.mustache);
 app.set('view engine', 'html');
+
+// Set up baseline
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src')));
+
+// Set up router
 app.use(routes);
 
-// this is a single route, in the simplest possible format
-// the simplest format is not necessarily the best one.
-// this is, right now, an introduction to Callback Hell
-// but it is okay for a first-level example
+// Simple api request to PG Open Data
 app.get('/api', (req, res) => {
-  const baseURL =
-    'https://data.princegeorgescountymd.gov/resource/2v6d-7p4w.json';
-  fetch(baseURL)
+  fetch(url)
     .then(r => r.json())
     .then(data => {
-      console.log(data);
       res.send({ data: data });
     })
     .catch(err => {
