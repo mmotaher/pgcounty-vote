@@ -2,9 +2,8 @@
   "name": "pgcounty-vote",
   "version": "1.0.0",
   "description": "A simple web application for finding your polling place",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "compile:sass": "node-sass app/sass/main.scss app/css/style.css -w",
     "start": "node server.js"
   },
   "repository": {
@@ -18,13 +17,14 @@
   },
   "homepage": "https://github.com/INST377-Team-12/pgcounty-vote#readme",
   "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0"
+    "eslint": "^6.6.0"
   },
   "dependencies": {
     "consolidate": "^0.15.1",
     "express": "^4.17.1",
     "mustache": "^3.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "node-geocode": "^0.2.0",
+    "serve-favicon": "^2.5.0"
   }
 }

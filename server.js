@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const engine = require('consolidate');
-const routes = require('./src/routes');
+const router = require('./router');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,19 +19,18 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src')));
 
 // Set up router
-app.use(routes);
+app.use('/', router);
 
 // Simple api request to PG Open Data
 app.get('/api', (req, res) => {
   fetch(url)
-    .then(r => r.json())
-    .then(data => {
-      res.send({ data: data });
+    .then((r) => r.json())
+    .then((data) => {
+      res.send({ data });
     })
-    .catch(err => {
-      console.log(err);
+    .catch(() => {
       res.redirect('/error');
     });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port);
