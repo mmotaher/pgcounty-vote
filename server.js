@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const engine = require('consolidate');
+const routes = require('./src/routes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,11 +12,8 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  express.static(path.join(__dirname, 'src'), {
-    index: path.join(__dirname, 'src/views/home_page.html')
-  })
-);
+app.use(express.static(path.join(__dirname, 'src')));
+app.use(routes);
 
 // this is a single route, in the simplest possible format
 // the simplest format is not necessarily the best one.
@@ -34,10 +32,6 @@ app.get('/api', (req, res) => {
       console.log(err);
       res.redirect('/error');
     });
-});
-
-app.get('/', function(req, res){
-  res.status(200).sendFile(path.join(__dirname, '/src/views/home_page.html'));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
