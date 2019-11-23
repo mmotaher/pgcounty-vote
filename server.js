@@ -13,10 +13,10 @@ app.engine('html', engine.mustache);
 app.set('view engine', 'html');
 
 // Set up baseline
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, 'build'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Set up router
 app.use('/', router);
