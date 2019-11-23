@@ -22,6 +22,7 @@
 
   <body>
       <div class="introduction_content">
+          <h1> Work on this header section later</h1>
           <!--
           <div class="logo_container">
               <img class="pg_county_logo" src="pg_county_logo.png">
@@ -45,6 +46,109 @@
             </div>
           </div>
       </section>
+      <section class="container p-t-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Meet the Representatives</h1>
+                </div>
+            </div>
+        </section>
+        <section class="carousel slide" data-ride="carousel" id="postsCarousel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-md-right lead">
+                        <a class="btn btn-outline-secondary prev" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></a>
+                        <a class="btn btn-outline-secondary next" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container p-t-0 m-t-2 carousel-inner">
+                <div class="row row-equal carousel-item active m-t-0">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/andy_harris_2.jpg" alt="Carousel 1">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"></h6>
+                                <h2>
+                                    <a href>Andy Harris</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/dutch_ruppersberger_2.jpg" alt="Carousel 2">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"></h6>
+                                <h2>
+                                    <a href>Dutch Ruppersberger</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/john_sarbanes_2.jpg" alt="Carousel 3">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"></h6>
+                                <h2>
+                                    <a href>John Sarbanes</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-equal carousel-item m-t-0">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/anthony_brown_2.jpg" alt="Carousel 4">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"></h6>
+                                <h2>
+                                    <a href>Anthony Brown</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/steny_hoyer_2.jpg" alt="Carousel 5">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"><span class="pull-xs-right"></span></h6>
+                                <h2>
+                                    <a href>Steny Hoyer</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fadeIn wow">
+                        <div class="card">
+                            <div class="card-img-top card-img-top-250">
+                                <img class="img-fluid" src="static/david_trone_2.jpg" alt="Carousel 6">
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h6 class="small text-wide p-b-2"></h6>
+                                <h2>
+                                    <a href>David Trone</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+      <!--
           <div class="get_to_know">
               <div class="representatives">
                 <figure>
@@ -98,6 +202,7 @@
                 </div>
         </div>
         </div>
+    -->
 
     
 
@@ -111,6 +216,16 @@
       button.onclick = function() {
         location.assign('search_page.html');
       }
+    </script>
+    <script>
+    (function($) {
+    "use strict";
+
+    // manual carousel controls
+    $('.next').click(function(){ $('.carousel').carousel('next');return false; });
+    $('.prev').click(function(){ $('.carousel').carousel('prev');return false; });
+    
+})(jQuery);
     </script>
   </body>
 </html>
