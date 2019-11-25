@@ -211,6 +211,15 @@
     max-height: 250px;
     overflow:hidden;
 }
+
+.footer_div{
+    height: 5%;
+    width: auto;
+}
+
+.learn_more_button{
+    padding-bottom: 0.5rem;
+}
     }
 
 
