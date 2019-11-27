@@ -111,6 +111,9 @@
       button.onclick = function() {
         location.assign('search_page.html');
       }
+
+      fetch('/api')
+        .then((data) => console.log(data))
     </script>
   </body>
 </html>
