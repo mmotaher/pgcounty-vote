@@ -1,58 +1,49 @@
+import { marker, map } from 'leaflet';
+import geolib from 'geolib';
+
 var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      };
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
 
-      function success(pos) {
-        var crd = pos.coords;
-        var long = crd.longitude;
-        var lat = crd.latitude;
-        console.log(crd);
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-        let marker2 = L.marker([lat, long]).addTo(map);
-      }
+function success (pos) {
+  const crd = pos.coords;
+  const long = crd.longitude;
+  const lat = crd.latitude;
+  console.log(crd);
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  const marker2 = marker([lat, long]).addTo(map);
+}
 
-      function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-      }
+function error (err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
-      navigator.geolocation.getCurrentPosition(success, error, options);
+const pos = navigator.geolocation.getCurrentPosition(success, error, options);
+console.log(pos);
 
-      //Leaflet
-      let map = L.map("map").setView([0, 0], 1);
+// Leaflet
+const myMap = map('map').setView([0, 0], 1);
 
-      L.tileLayer(
-        "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=BCBTN1mLGrjkFnZk42Dl",
-        {
-          attribution:
+L.tileLayer(
+  'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=BCBTN1mLGrjkFnZk42Dl',
+  {
+    attribution:
             '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        }
-      ).addTo(map);
+  }
+).addTo(map);
 
-      let marker = L.marker([51.5, -0.09]).addTo(map);
-      
-      fetch("https://data.princegeorgescountymd.gov/resource/2v6d-7p4w.json")
-        .then(res => res.json)
-        .then({});
+const myMarker = marker([51.5, -0.09]).addTo(map);
 
-
-      /*function geocode() {
-        var location = "22 Main st Boston MA";
-        axios
-          .get("https://maps.googleapis.com/maps/api/geocode/json", {
-            params: {
-              address: location,
-              key: "AIzaSyBeadu2zR1apGmk8hPyjSFfNbgOExvJ5BQ"
-            }
-          })
-          .then(function(response) {
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }*/
+fetch('/api/pollingloc')
+  .then(res => res.json)
+  .then(res => res.data)
+  .then(data => {
+    console.log(data);
+   // const pollingPlace = data[0];
+   // const distance = geolib.getDistance({ latitude: },{})
+  })
