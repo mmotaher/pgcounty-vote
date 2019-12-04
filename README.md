@@ -28,3 +28,9 @@ npm i
 npm run start
 ```
 6. Once you've got the repository running, you have to be aware of branching and pull requests, [this link](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) should explain basic branching and merging, and [this document](./docs/pull-requests.md) should help you make your first pull request in our Github repository!
+### Dependencies
+The dependencies that our project rely on are listed within the "devDependencies" and "dependencies" section within the package.json. The "devDependencies" section outlines dependencies that are necessary for development and build processes within our project, while the "dependencies" section outline the dependencies necessary for our application to function.
+### Project Structure
+```
+/Build
+```

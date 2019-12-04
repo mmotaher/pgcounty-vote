@@ -1,7 +1,7 @@
 {
   "name": "pgcounty-vote",
   "version": "1.0.0",
-  "description": "A simple web application for finding your polling place",
+  "description": "A simple web application for finding your polling place.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
