@@ -1,5 +1,6 @@
-import { marker, map } from 'leaflet';
-import geolib from 'geolib';
+var L = require('leaflet');
+var geolib = require('geolib');
+var fetch = require('node-fetch');
 
 var options = {
   enableHighAccuracy: true,
@@ -11,12 +12,22 @@ function success (pos) {
   const crd = pos.coords;
   const long = crd.longitude;
   const lat = crd.latitude;
-  console.log(crd);
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-  const marker2 = marker([lat, long]).addTo(map);
+  const close = fetch('/api/pollingloc')
+    .then(res => res.json())
+    .then(res => res.data)
+    .then(data => {
+      let lowestDistance = Number.MAX_SAFE_INTEGER;
+      let lowestPlace = 0;
+      for (let i = 0; i < data.length; i++) {
+        const distance = geolib.getDistance({ latitude: data[i].lat, longitude: data[i].long }, { latitude: lat, longitude: long });
+        if (distance < lowestDistance) {
+          lowestPlace = i;
+          lowestDistance = distance;
+        }
+      }
+      return { place: lowestPlace, distance: lowestDistance };
+    });
+  const marker2 = L.marker([lat, long]).addTo(map);
 }
 
 function error (err) {
@@ -24,26 +35,16 @@ function error (err) {
 }
 
 const pos = navigator.geolocation.getCurrentPosition(success, error, options);
-console.log(pos);
 
 // Leaflet
-const myMap = map('map').setView([0, 0], 1);
+const map = L.map('map').setView([0, 0], 1);
 
 L.tileLayer(
   'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=BCBTN1mLGrjkFnZk42Dl',
   {
     attribution:
-            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+      '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
   }
 ).addTo(map);
 
-const myMarker = marker([51.5, -0.09]).addTo(map);
-
-fetch('/api/pollingloc')
-  .then(res => res.json)
-  .then(res => res.data)
-  .then(data => {
-    console.log(data);
-   // const pollingPlace = data[0];
-   // const distance = geolib.getDistance({ latitude: },{})
-  })
+const marker = L.marker([51.5, -0.09]).addTo(map);
