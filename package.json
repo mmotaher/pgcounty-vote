@@ -4,7 +4,8 @@
   "description": "A simple web application for finding your polling place",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,15 +18,22 @@
   },
   "homepage": "https://github.com/INST377-Team-12/pgcounty-vote#readme",
   "devDependencies": {
-    "eslint": "^6.6.0"
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.6.0",
+    "glob": "^7.1.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "consolidate": "^0.15.1",
     "express": "^4.17.1",
     "geolib": "^3.1.0",
+    "leaflet": "^1.6.0",
     "mustache": "^3.1.0",
     "node-fetch": "^2.6.0",
-    "node-geocode": "^0.2.0",
     "serve-favicon": "^2.5.0"
   }
 }

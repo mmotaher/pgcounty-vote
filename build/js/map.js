@@ -1,58 +1,50 @@
+var L = require('leaflet');
+var geolib = require('geolib');
+var fetch = require('node-fetch');
+
 var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      };
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
 
-      function success(pos) {
-        var crd = pos.coords;
-        var long = crd.longitude;
-        var lat = crd.latitude;
-        console.log(crd);
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-        let marker2 = L.marker([lat, long]).addTo(map);
-      }
-
-      function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-      }
-
-      navigator.geolocation.getCurrentPosition(success, error, options);
-
-      //Leaflet
-      let map = L.map("map").setView([0, 0], 1);
-
-      L.tileLayer(
-        "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=BCBTN1mLGrjkFnZk42Dl",
-        {
-          attribution:
-            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+function success (pos) {
+  const crd = pos.coords;
+  const long = crd.longitude;
+  const lat = crd.latitude;
+  const close = fetch('/api/pollingloc')
+    .then(res => res.json())
+    .then(res => res.data)
+    .then(data => {
+      let lowestDistance = Number.MAX_SAFE_INTEGER;
+      let lowestPlace = 0;
+      for (let i = 0; i < data.length; i++) {
+        const distance = geolib.getDistance({ latitude: data[i].lat, longitude: data[i].long }, { latitude: lat, longitude: long });
+        if (distance < lowestDistance) {
+          lowestPlace = i;
+          lowestDistance = distance;
         }
-      ).addTo(map);
+      }
+      return { place: lowestPlace, distance: lowestDistance };
+    });
+  const marker2 = L.marker([lat, long]).addTo(map);
+}
 
-      let marker = L.marker([51.5, -0.09]).addTo(map);
-      
-      fetch("https://data.princegeorgescountymd.gov/resource/2v6d-7p4w.json")
-        .then(res => res.json)
-        .then({});
+function error (err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
+const pos = navigator.geolocation.getCurrentPosition(success, error, options);
 
-      /*function geocode() {
-        var location = "22 Main st Boston MA";
-        axios
-          .get("https://maps.googleapis.com/maps/api/geocode/json", {
-            params: {
-              address: location,
-              key: "AIzaSyBeadu2zR1apGmk8hPyjSFfNbgOExvJ5BQ"
-            }
-          })
-          .then(function(response) {
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }*/
+// Leaflet
+const map = L.map('map').setView([0, 0], 1);
+
+L.tileLayer(
+  'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=BCBTN1mLGrjkFnZk42Dl',
+  {
+    attribution:
+      '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+  }
+).addTo(map);
+
+const marker = L.marker([51.5, -0.09]).addTo(map);
