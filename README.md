@@ -28,3 +28,37 @@ npm i
 npm run start
 ```
 6. Once you've got the repository running, you have to be aware of branching and pull requests, [this link](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) should explain basic branching and merging, and [this document](./docs/pull-requests.md) should help you make your first pull request in our Github repository!
+### Dependencies
+The dependencies that our project rely on are listed within the "devDependencies" and "dependencies" section within the package.json. The "devDependencies" section outlines dependencies that are necessary for development and build processes within our project, while the "dependencies" section outline the dependencies necessary for our application to function.
+### Main Project Structure
+> ### /docs
+Contains all of the supporting documents of our project.
+> ### /build
+Contains the development version of our application.
+> ### /src
+Contains the production version of our application.
+#### Substructure for /build & /src
+> #### /css
+Contains all of the styling for our HTML.
+> #### /dist
+Contains the bundled JS files from webpack.
+> #### /js
+Contains all of the JavaScript for our HTML.
+> #### static
+Contains all of the static files (images) for our HTML.
+> #### *.html
+All of the HTML files reside within the root of the repository.
+> ### .eslintrc.json
+Contains all of the rules that our JS files follow.
+> ### .gitignore
+Contains all of the files to ignore from commits and pushes from local repositories.
+> ### favicon.ico
+Determines the icon that represents the web application in a browser tab.
+> ### package.json
+Describes the project, its scripts, and dependencies.
+> ### server.js
+The entry point for the application and contains all of the code for starting the Node.js server.
+> ### webpack.config.js
+Contains all of the configurations for the webpack development dependency.
+### API
+The only endpoint for our server is a GET endpoint by `'/api/pollingloc'` that pulls the data from the PG county open API.

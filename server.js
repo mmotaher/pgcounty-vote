@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const engine = require('consolidate');
+const results = require('./routes/results');
 
 const url = 'https://data.princegeorgescountymd.gov/resource/2v6d-7p4w.json';
 const app = express();
@@ -18,10 +19,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Simple api request to PG Open Data
-app.get('/api/pollingloc', (req, res) => {
-  fetch(url)
-    .then((data) => data.json())
-    .then((data) => res.send({ data }))
-});
+app.use('/results', results);
 
 app.listen(port, console.log(`App is up and running on port ${port}!`));

@@ -1,6 +1,7 @@
-var L = require('leaflet');
-var geolib = require('geolib');
-var fetch = require('node-fetch');
+const L = require('leaflet');
+const geolib = require('geolib');
+const fetch = require('node-fetch');
+const store = require('store2');
 
 var options = {
   enableHighAccuracy: true,
@@ -12,21 +13,18 @@ function success (pos) {
   const crd = pos.coords;
   const long = crd.longitude;
   const lat = crd.latitude;
-  const close = fetch('/api/pollingloc')
-    .then(res => res.json())
-    .then(res => res.data)
-    .then(data => {
-      let lowestDistance = Number.MAX_SAFE_INTEGER;
-      let lowestPlace = 0;
-      for (let i = 0; i < data.length; i++) {
-        const distance = geolib.getDistance({ latitude: data[i].lat, longitude: data[i].long }, { latitude: lat, longitude: long });
-        if (distance < lowestDistance) {
-          lowestPlace = i;
-          lowestDistance = distance;
-        }
-      }
-      return { place: lowestPlace, distance: lowestDistance };
-    });
+  fetch('/results/pollingData').then(console.log(store('data')));
+  //     let lowestDistance = Number.MAX_SAFE_INTEGER;
+  //     let lowestPlace = 0;
+  //     for (let i = 0; i < data.length; i++) {
+  //       const distance = geolib.getDistance({ latitude: data[i].lat, longitude: data[i].long }, { latitude: lat, longitude: long });
+  //       if (distance < lowestDistance) {
+  //         lowestPlace = i;
+  //         lowestDistance = distance;
+  //       }
+  //     }
+  //     return { place: lowestPlace, distance: lowestDistance };
+  //   });
   const marker2 = L.marker([lat, long]).addTo(map);
 }
 
