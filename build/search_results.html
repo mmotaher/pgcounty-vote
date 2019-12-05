@@ -135,11 +135,11 @@
                 const crd = pos.coords;
                 const long = crd.longitude;
                 const lat = crd.latitude;
-                const marker1 = L.marker([39.09718355363024, -76.85463504670246]).addTo(map);
+                const marker1 = L.marker([lat, long]).addTo(map);
                 // map.setView([lat, long], 18);
                 getData(lat, long)
                     .then(res => {
-                        const marker2 = L.marker([lat, long]).addTo(map);
+                        const marker2 = L.marker([res.pollingLoc.lat, res.pollingLoc.long]).addTo(map);
                         const group = new L.featureGroup([marker1, marker2]);
                         map.fitBounds(group.getBounds());
                         return res;
