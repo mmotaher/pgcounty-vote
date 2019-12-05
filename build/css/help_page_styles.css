@@ -112,3 +112,21 @@ body{
         display:inline-block;
         float:none;
       }
+
+      .list-content{
+        color: white;
+        font-size: 12pt;
+        font-family: 'Archivo';
+    }
+
+    .about_body_1{
+        position: relative;
+        padding-left: 10%;
+        padding-top: 10%;
+    }
+
+    .about_body_2{
+        position: relative;
+        padding-left: 10%;
+        padding-top: 5%;
+    }
