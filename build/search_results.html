@@ -76,7 +76,6 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
         <script>
-
             const map = L.map('map');
 
             var options = {
@@ -118,8 +117,8 @@
                 for (let i = 0; i < res.length; i++) {
                     const distance = calculateGeoDistance(res[i].lat, lat, long, res[i].long);
                     if (distance < lowestDistance) {
-                    lowestPlace = i;
-                    lowestDistance = distance;
+                        lowestPlace = i;
+                        lowestDistance = distance;
                     }
                 }
 
@@ -139,11 +138,9 @@
                         const group = new L.featureGroup([marker1, marker2]);
                         map.fitBounds(group.getBounds());
                         return res;
-                    })
-                    .then(res => {
-                        // const midpoint = calculateMidpoint(lat, 39.09718355363024, long, -76.85463504670246);
                     });
             }
+            
             function error (err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
             }
@@ -161,8 +158,6 @@
                 '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
             }
             ).addTo(map);
-
-            const marker = L.marker([51.5, -0.09]).addTo(map);
         </script>
 
 </body>
